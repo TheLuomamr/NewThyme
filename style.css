@@ -1,0 +1,44 @@
+#inputPassword{
+    width:25%;
+    float:left;
+
+}
+#button1{
+    border: black 1px solid;
+    background-color: black
+}
+#list{
+    border: solid 1px white;
+    border-radius: 10px;
+    color:white;
+    background-color: rgba(107, 107, 107, 0.815);
+}
+#map{
+    border: solid 1px white;
+    border-radius: 10px;
+    color:white;
+    background-color: rgba(107, 107, 107, 0.815);
+}
+body{
+    background-image: url("images/foody.jpg");
+    background-size: auto;
+    color:white;
+    font-family: 'Open Sans Condensed', sans-serif;
+
+}
+.jumbotron{
+    background: none;
+    color: white;
+    font-family: 'Shadows Into Light', cursive;
+
+}
+.lead{
+    font-size: 35px;
+}
+hr{
+    background-color: white;
+    height: 2px;
+}
+h2{
+    font-size: 40px;
+}
