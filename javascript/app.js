@@ -2,7 +2,9 @@ var map, searchManager;
 
 // zip code to be grabbed from <html>
 // example zip here
-var zip = 44106;
+
+var zip = 44236;
+
 
 function GetMap() {
     map = new Microsoft.Maps.Map('#myMap', {
@@ -71,3 +73,12 @@ $.ajax({
     }).then(function(response) {
         console.log(response);
     });
+
+
+
+    $("#submit-button").on("click", function() {
+        zip = $("#zip-input").val();
+        geocodeQuery(zip);
+        console.log(zip);
+    });
+    
