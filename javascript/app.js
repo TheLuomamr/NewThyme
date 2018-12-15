@@ -1,7 +1,22 @@
 var map, searchManager;
 
+var latitude, longitude;
+
 // zip code to be grabbed from <html>
 // example zip here
+var queryURL = 'http://api.ipstack.com/192.5.110.7?access_key=95751cb0a919156ee8a1114a5177565a';
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        var zip = response.zip;
+        latitude = response.latitude;
+        console.log(latitude);
+        longitude = response.longitude;
+        console.log(longitude);
+    });
+
 
 var zip = 44236;
 
@@ -76,9 +91,29 @@ $.ajax({
 
 
 
+
+
+
     $("#submit-button").on("click", function() {
         zip = $("#zip-input").val();
         geocodeQuery(zip);
         console.log(zip);
     });
-    
+
+
+latitude = 41.5084;
+longitude = -81.6076;
+
+
+var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=pizza&latitude=" + latitude + "&longitude=" + longitude;
+
+$.ajax({
+    url: queryURL,
+    headers: {
+        'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
+    },
+    method: "GET",
+    dataType: "json"
+}).then(function(response) { 
+    console.log(response);
+});
