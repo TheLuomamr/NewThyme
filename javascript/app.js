@@ -84,14 +84,28 @@ $.ajax({
 
     $(document).ready(function(){  //new jQuery-Plug-ins down here
        
-        $('').on({
-            hoverenter : function(){
-              $(this).addClass(".display-4 Thyme");
+        $('#list').on({
+            'hoverinit' : function(ev, hover) {
+                var delay = $(this).data('delay'),
+                    distance = $(this).data('distance'),
+                    leave = $(this).data('leave');
+                if(delay) {
+                    hover.delay(delay);
+                }
+                if(distance) {
+                    hover.distance(distance);
+                }
+                if(leave) {
+                    hover.leave(leave);
+                }
             },
-            hoverleave : function(){
-              $(this).removeClass(".display-4 Thyme");
+            'hoverenter' : function(ev) {
+                $(this).addClass('highlight');
+            },
+            'hoverleave' : function(ev) {
+                $(this).removeClass('highlight');
             }
-          });
+        });
       
     
     });
