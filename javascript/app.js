@@ -81,4 +81,17 @@ $.ajax({
         geocodeQuery(zip);
         console.log(zip);
     });
+
+    $(document).ready(function(){  //new jQuery-Plug-ins down here
+       
+        $('').on({
+            hoverenter : function(){
+              $(this).addClass(".display-4 Thyme");
+            },
+            hoverleave : function(){
+              $(this).removeClass(".display-4 Thyme");
+            }
+          });
+      
     
+    });

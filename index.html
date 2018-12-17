@@ -11,13 +11,14 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <script >src="/Users/Shampopencil/Desktop/Group_Project_One/jQueryPlugIns"</script>
+    <script>src="jQueryPlugIns/jquerypp.custom.js"</script>
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid text-center">
         <div class="container">
-           <u><h1 class="display-4">What To Eat This Thyme</h1></u>
-            <p class="lead">Have a craving for a specific type of food? Find a local place to grab a bite to eat or find a recipe to make yourself! </p>
+           <u><h1 class="display-4 Thyme" id="modifyHeader">What To Eat This Thyme</h1></u>
+            <p class="lead" id="modifyHeader2">Have a craving for a specific type of food? Find a local place to grab a bite to eat or find a recipe to make yourself! </p>
             <hr>
         </div>
     </div>
@@ -43,15 +44,16 @@
     <div class="container">
         <div class="row">
             <div class="col text-center" id="list">
-            <h2>List of Where to Eat</h2>
+            <h2>List of Where to Eat</h2> <!--make list resizable-->
             </div>
             <div class="col ml-3 text-center" id="map">
-            <h2>Map</h2>
+            <h2>Map</h2> <!--make map resizable-->
             <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
             </div>
         </div>
     </div>
-
+    <!---<script >src="jQueryPlugIns/jquerypp-2.0.0"</script>
+    <script>src="jQueryPlugIns/jquerypp.custom.js"</script>-->
     <script type="text/javascript" src="javascript/app.js"></script>
 </body>
 </html>
