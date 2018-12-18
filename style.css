@@ -32,6 +32,9 @@ body{
     font-family: 'Shadows Into Light', cursive;
 
 }
+#Hangry{
+    color:rgb(255, 255, 255);
+}
 .lead{
     font-size: 35px;
 }
@@ -42,3 +45,63 @@ hr{
 h2{
     font-size: 40px;
 }
+.frame {
+    width: 100%;
+    display: inline-block;
+    outline: none;
+    position: absolute;
+    top: 0px;
+    z-index: 9;
+  }
+  
+  .txtBox {
+    font-family: 'Roboto', sans-serif;
+    width: auto;
+    height: auto;
+    color: #f8b82e;
+    font-size: 25px;
+    text-align: center;
+    display: inline-block;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+    -ms-transform: scale(20, 20);
+    /* IE 9 */
+    -webkit-transform: scale(20, 20);
+    /* Safari */
+    transform: scale(20, 20);
+    /* Standard syntax */
+    opacity: 0;
+  }
+  
+  .animate {
+    -ms-transform: scale(1, 1);
+    /* IE 9 */
+    -webkit-transform: scale(1, 1);
+    /* Safari */
+    transform: scale(1, 1);
+    /* Standard syntax */
+    opacity: 1;
+  }
+  
+  .delanimate {
+    -ms-transform: scale(10, 10);
+    /* IE 9 */
+    -webkit-transform: scale(10, 10);
+    /* Safari */
+    transform: scale(10, 10);
+    /* Standard syntax */
+    opacity: 0;
+  }
+  
+  .scale {
+    transform: scale(1, 1);
+    transition: transform 0.5s ease;
+  }

@@ -1,0 +1,100 @@
+/*@keyframes 
+blink {  0% {
+ opacity: 0.0;
+}
+ 50% {
+ opacity: 1.0;
+}
+ 100% {
+ opacity: 0.0;
+}
+}
+@keyframes 
+letter {  0% {
+ color: #87d8ff;
+ transform: scale(2, 2) translateX(7px);
+}
+ 100% {
+ color: #004f75;
+ transform: scale(1, 1) translateX(0px);
+}
+}
+
+form {
+  width: 400px;
+  margin: 120px auto;
+}
+
+form span {
+  color: #87d8ff;
+  font-weight: 100;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.bloop {
+  width: 400px;
+  height: 40px;
+  margin: 0px auto;
+  position: relative;
+}
+
+.bloop input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  color: transparent;
+  background: transparent;
+  position: absolute;
+  z-index: 2;
+  padding-left: 15px;
+}
+
+.bloop input:focus {
+  outline-color: transparent;
+  outline-style: none;
+  outline: none;
+}
+
+.bloop input:focus + div { background: #999; }
+
+.bloop input:focus + div .frame { display: inline-block; }
+
+.bloop div {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  background: #777;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding: 0px 15px;
+}
+
+.bloop div .frame {
+  display: none;
+  color: #87d8ff;
+  font-size: 35px;
+  opacity: 1.0;
+  font-style: normal;
+  animation: blink 0.8s linear infinite;
+  font-size: 31px;
+  font-weight: 100;
+  position: relative;
+  top: -3px;
+  right: -7px;
+}
+
+.bloop div span {
+  position: relative;
+  top: -4px;
+  transition: 200ms cubic-bezier(0.08, 0.6, 0.56, 1.4);
+  animation: letter 0.5s cubic-bezier(0.08, 0.6, 0.56, 1.4);
+  display: inline-block;
+  color: #004f75;
+  font-size: 20px;
+  font-weight: 100;
+}*/

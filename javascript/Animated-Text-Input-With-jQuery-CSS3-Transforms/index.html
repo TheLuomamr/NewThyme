@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Animated Text Input Demo</title>
+<script src="prefixfree.min.js"></script>
+<style>
+body {
+  background: #333;
+  font-family: sans-serif;
+}
+@keyframes 
+blink {  0% {
+ opacity: 0.0;
+}
+ 50% {
+ opacity: 1.0;
+}
+ 100% {
+ opacity: 0.0;
+}
+}
+@keyframes 
+letter {  0% {
+ color: #87d8ff;
+ transform: scale(2, 2) translateX(7px);
+}
+ 100% {
+ color: #004f75;
+ transform: scale(1, 1) translateX(0px);
+}
+}
+
+h1 {
+  font-weight: 100;
+  color: #87d8ff;
+  font-size: 28px;
+}
+
+form {
+  width: 400px;
+  margin: 150px auto;
+}
+
+form span {
+  color: #87d8ff;
+  font-weight: 100;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.bloop {
+  width: 400px;
+  height: 40px;
+  margin: 0px auto;
+  position: relative;
+}
+
+.bloop input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  color: transparent;
+  background: transparent;
+  position: absolute;
+  z-index: 2;
+  padding-left: 15px;
+}
+
+.bloop input:focus {
+  outline-color: transparent;
+  outline-style: none;
+  outline: none;
+}
+
+.bloop input:focus + div { background: #999; }
+
+.bloop input:focus + div .carrat { display: inline-block; }
+
+.bloop div {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  background: #777;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding: 0px 15px;
+}
+
+.bloop div .carrat {
+  display: none;
+  color: #87d8ff;
+  font-size: 35px;
+  opacity: 1.0;
+  font-style: normal;
+  animation: blink 0.8s linear infinite;
+  font-size: 31px;
+  font-weight: 100;
+  position: relative;
+  top: -3px;
+  right: -7px;
+}
+
+.bloop div span {
+  position: relative;
+  top: -4px;
+  transition: 200ms cubic-bezier(0.08, 0.6, 0.56, 1.4);
+  animation: letter 0.5s cubic-bezier(0.08, 0.6, 0.56, 1.4);
+  display: inline-block;
+  color: #004f75;
+  font-size: 20px;
+  font-weight: 100;
+}
+</style>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="http://www.jqueryscript.net/animation/Animated-Text-Input-With-jQuery-CSS3-Transforms.html">Download This Plugin</a></li>
+<li><a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+<form>
+  <h1>Animated text input:</h1>
+  <div class="bloop" id="blooper">
+    <input type="text"/>
+    <div> <i class="carrat">|</i> </div>
+  </div>
+</form>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script>
+var $input = $('.bloop input');
+var $div = $('.bloop div');
+var $carrat = $('.bloop div .carrat');
+
+var current = '';
+
+function addLetters(letters) {
+  var delay = 200;
+  var base = 0;
+  letters.split('').forEach(function(letter, i) {
+    console.log('delaying %d on letter %s', i*delay, letter);
+    setTimeout(function() {
+      if (letter === ' ') { letter = '&nbsp;'; }
+      var span = '<span>' + letter + '</span>';
+      $carrat.before(span);
+    }, delay * i);
+  });
+}
+
+function deleteLastLetter() {
+  $div.find('span:last').remove();
+}
+
+function indexOfChange(a, b) {
+  var i = 0;
+  while (a.charAt(i) === b.charAt(i)) { i++; }
+  return i;
+}
+
+// keypress only fires for 'readable' content
+$input.on('input', function(e){
+  var val = this.value;
+  var idx = indexOfChange(current, val);
+  var base = current.slice(0, idx);
+  
+  // shrink current and displayed down to base size
+  while(current.length > base.length) {
+    deleteLastLetter();
+    current = current.slice(0, current.length - 1);
+  }
+  
+  // adding
+  if (val.length > base.length) {
+    var letters = val.slice(idx);
+    addLetters(letters);
+    current = val;
+  }
+
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
