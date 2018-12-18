@@ -1,33 +1,139 @@
-var map, searchManager;
+$("#submit-button").on("click", function() {
+    var zipcode = $("#zip-input").val().trim();
+    var food = $("#food-input").val().trim();
+
+
+
 
 var latitude, longitude;
 
-// zip code to be grabbed from <html>
-// example zip here
-var queryURL = 'http://api.ipstack.com/192.5.110.7?access_key=95751cb0a919156ee8a1114a5177565a';
-    $.ajax({
+var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.zipcodeapi.com/rest/0rOl7hMQcxZH79DDu2OthcjhqPDWttWMEtqM1X5IOfuAconQ1SbYjVrgOsR7m7hr/info.json/'+ zipcode + '/degrees';
+ 
+$.ajax({
     url: queryURL,
-    method: "GET"
+    headers: {
+        'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
+    },
+    method: "GET",
+    dataType: "json"
     }).then(function(response) {
         console.log(response);
-        var zip = response.zip;
-        latitude = response.latitude;
-        console.log(latitude);
-        longitude = response.longitude;
-        console.log(longitude);
+        latitude = response.lat;
+        longitude = response.lng;
+
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
+
+$.ajax({
+    url: queryURL,
+    headers: {
+        'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
+    },
+    method: "GET",
+    dataType: "json"
+}).then(function(response) { 
+    console.log(response);
+    latitude = response.businesses[1].coordinates.latitude;
+    longitude = response.businesses[1].coordinates.longitude;
+    latitudes = [];
+    longitudes = [];
+    businessNames = [];
+    var address0 = [];
+    var address1 = [];
+    var phone = [];
+    var website = [];
+    for (i=0; i < response.businesses.length; i++) {
+        latitudes[i] = response.businesses[i].coordinates.latitude;
+        longitudes[i] = response.businesses[i].coordinates.longitude;
+        businessNames[i] = response.businesses[i].name;
+        address0[i] = response.businesses[i].location.display_address[0];
+        address1[i] = response.businesses[i].location.display_address[1];
+        phone[i] = response.businesses[i].display_phone;
+        website[i] = response.businesses[i].url;
+
+        $("#list").append(
+            '<div class="card" style="width: 18rem;">' + 
+            '<div class="card-body">' + 
+                '<h5 class="card-title">'+ (i+1) + '. ' + businessNames[i] + '</h5>' + 
+                '<h6 class="card-subtitle mb-2 text-muted">' + address0[i] + '</h6>' + 
+                '<h6 class="card-subtitle mb-2 text-muted">' + address1[i] + '</h6>' + 
+                '<h6 class="card-text">' + phone[i] + '</h6>' +
+                '<a href="'+ website[i] + '" class="card-link">WEBSITE</a>' + 
+            '</div>' + 
+            '</div>'
+        );
+                    
+    }
+    geocodeQuery(zipcode);
+    GetMap();
+    console.log(longitude);
+});
     });
 
+});
 
-var zip = 44236;
-
+var map, infobox, searchManager;
 
 function GetMap() {
     map = new Microsoft.Maps.Map('#myMap', {
-        credentials: "Auv1Og25-4VdEUdvHA2_Vaef_u1C3RW9f0o28hOZDVXIzP0W3yIpbuBqMkmDqT-Z"
+        credentials: 'Auv1Og25-4VdEUdvHA2_Vaef_u1C3RW9f0o28hOZDVXIzP0W3yIpbuBqMkmDqT-Z'
+    });
+    console.log(map);
+
+    //Create an infobox at the center of the map but don't show it.
+    infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+        visible: false
     });
 
-    //Make a request to geocode the zip.
-    geocodeQuery(zip);
+    //Assign the infobox to a map instance.
+    infobox.setMap(map);
+
+    //Create random locations in the map bounds.
+    // var randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(5, map.getBounds());
+    var randomLocations = [];
+
+    console.log(randomLocations);
+
+    for (i=0; i < 5; i++) {
+        randomLocations.push(n = {
+            latitude: latitudes[i],
+            longitude: longitudes[i],
+            altitude: 0,
+            altitudeReference: -1
+        });
+    }
+
+    console.log(randomLocations);
+    
+    for (var i = 0; i < randomLocations.length; i++) {
+        var pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
+        console.log(randomLocations[i]);
+        console.log(pin);
+
+        //Store some metadata with the pushpin.
+        pin.metadata = {
+            title: 'Pin ' + (i + 1),
+            description: businessNames[i]
+        };
+
+        //Add a click event handler to the pushpin.
+        Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+
+        //Add pushpin to the map.
+        map.entities.push(pin);
+    }
+}
+
+function pushpinClicked(e) {
+    //Make sure the infobox has metadata to display.
+    if (e.target.metadata) {
+        //Set the infobox options with the metadata of the pushpin.
+        infobox.setOptions({
+            location: e.target.getLocation(),
+            title: e.target.metadata.title,
+            description: e.target.metadata.description,
+            visible: true
+        });
+    }
 }
 
 function geocodeQuery(query) {
@@ -94,29 +200,8 @@ $.ajax({
 
 
 
-    $("#submit-button").on("click", function() {
-        zip = $("#zip-input").val();
-        geocodeQuery(zip);
-        console.log(zip);
-    });
 
 
-latitude = 41.5084;
-longitude = -81.6076;
-
-
-var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=pizza&latitude=" + latitude + "&longitude=" + longitude;
-
-$.ajax({
-    url: queryURL,
-    headers: {
-        'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
-    },
-    method: "GET",
-    dataType: "json"
-}).then(function(response) { 
-    console.log(response);
-});
 
  ////Modal functions////
  var modal = document.getElementById('myModal');
