@@ -83,29 +83,48 @@ $.ajax({
     });
 
     $(document).ready(function(){  //new jQuery-Plug-ins down here
-       
-        $('#list').on({
-            'hoverinit' : function(ev, hover) {
-                var delay = $(this).data('delay'),
-                    distance = $(this).data('distance'),
-                    leave = $(this).data('leave');
-                if(delay) {
-                    hover.delay(delay);
-                }
-                if(distance) {
-                    hover.distance(distance);
-                }
-                if(leave) {
-                    hover.leave(leave);
-                }
-            },
-            'hoverenter' : function(ev) {
-                $(this).addClass('highlight');
-            },
-            'hoverleave' : function(ev) {
-                $(this).removeClass('highlight');
-            }
-        });
-      
-    
+        $("#list").resizable();
+        console.log( $("#list").resizable());
+        $("#list").resizable({
+
+            // selector for handle that starts dragging
+            handleSelector: null,
+          
+            // resize the width
+            resizeWidth: true,
+          
+            // resize the height
+            resizeHeight: true,    
+          
+            // the side that the width resizing is relative to
+            resizeWidthFrom: 'right',
+          
+            // the side that the height resizing is relative to
+            resizeHeightFrom: 'bottom',     
+          
+            // disable touch-action on $handle
+            // prevents browser level actions like forward back gestures
+            touchActionNone: true,
+          
+            // instance id
+            instanceId: null
+          
+          });
+          $("#list").resizable({
+
+            // hook into start drag operation (event passed)
+            onDragStart: null,
+          
+            // hook into stop drag operation (event passed)
+            onDragEnd: null,
+          
+            // hook into each drag operation (event passed)
+            onDrag: null,
+          
+          });
+                    
+                
+
+  
+
     });
