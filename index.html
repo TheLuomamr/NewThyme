@@ -10,8 +10,9 @@
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <link rel="stylesheet" href="javascript/Image-Zoom-Hover-Magnifier/image-magnifier.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <script src="javascript/Image-Zoom-Hover-Magnifier/image-magnifier.js"></script>
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid text-center">
@@ -59,6 +60,13 @@
         <div class="row">
             <div class="col text-center" id="list">
             <u><h2>List of Where to Eat</h2></u>
+            <script type="text/javascript">
+                imageZoom(
+                  { blur: false, inner: true, tint: false },
+                  { src: 'https://picsum.photos/1600/1280?image=593', height: 1280, width: 1600 },
+                  { src: 'https://picsum.photos/640/512?image=593', height: 512, width: 640 }
+                );
+              </script>
             </div>
             <div class="col ml-3 text-center" id="map">
             <u><h2>Map</h2></u>
