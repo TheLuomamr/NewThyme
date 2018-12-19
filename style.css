@@ -1,11 +1,9 @@
 h5, h6{
     color:black;
 }
-
 #inputPassword{
     width:25%;
     float:left;
-
 }
 #button1{
     border: black 1px solid;
@@ -29,14 +27,12 @@ body{
     background-size: auto;
     color:white;
     font-family: 'Open Sans Condensed', sans-serif;
-
 }
 .jumbotron{
     background: none;
     color: white;
     font-family: 'Shadows Into Light', cursive;
     padding-bottom: 0px;
-
 }
 .lead{
     font-size: 35px;
@@ -54,7 +50,6 @@ h2{
     height:450px; 
     border: black solid 4px;
 }
-
 #myBtn{
     background-color: rgb(73, 226, 73);
     color: black;
@@ -71,8 +66,8 @@ h2{
     color: black;
     margin-left: 5px;
     height: 40px;
+    font-size: 20px;
 }
-
 .modal {
     display: none; 
     position: fixed;
@@ -85,49 +80,42 @@ h2{
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
     color: black;
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
+}
+.modal-content {
+    background-color:rgb(233, 141, 141);
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
-  }
-  
-  .close {
+    border: solid white 3px;
+}  
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+    }  
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
-
+}
 input:invalid {
     border: 2px dashed;
     border-color: red;
 }
-
 input:valid {
     border: 2px solid black;
 }
-
 .card{
     margin-bottom: 5px;
     margin-left: 20%;
     border: black 2px solid;
+    float: left;
 }
 #zip-input{
     width: 100%;
-    
-
 }
 #cook{
     height: 55px;
@@ -135,4 +123,10 @@ input:valid {
     border-radius: 30px;
     position: relative;
 }
-
+h1{
+    font-size: 65px;
+    letter-spacing: 2px;
+}
+#recCard{
+    margin-left: 33%;
+}
