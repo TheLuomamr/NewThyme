@@ -2,92 +2,101 @@ $("#submit-button").on("click", function() {
     var zipcode = $("#zip-input").val().trim();
     var food = $("#food-input").val().trim();
 
+    var latitude, longitude;
 
+    var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.zipcodeapi.com/rest/0rOl7hMQcxZH79DDu2OthcjhqPDWttWMEtqM1X5IOfuAconQ1SbYjVrgOsR7m7hr/info.json/'+ zipcode + '/degrees';
+    
+    $.ajax({
+        url: queryURL,
+        headers: {
+            'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
+        },
+        method: "GET",
+        dataType: "json"
+        }).then(function(response) {
+            console.log(response);
+            latitude = response.lat;
+            longitude = response.lng;
 
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
 
-var latitude, longitude;
+        $.ajax({
+            url: queryURL,
+            headers: {
+                'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
+            },
+            method: "GET",
+            dataType: "json"
+        }).then(function(response) { 
+            console.log(response);
+            latitude = response.businesses[1].coordinates.latitude;
+            longitude = response.businesses[1].coordinates.longitude;
+            latitudes = [];
+            longitudes = [];
+            businessNames = [];
+            var address0 = [];
+            var address1 = [];
+            var phone = [];
+            var website = [];
+            for (i=0; i < 10; i++) {
+                latitudes[i] = response.businesses[i].coordinates.latitude;
+                longitudes[i] = response.businesses[i].coordinates.longitude;
+                businessNames[i] = response.businesses[i].name;
+                address0[i] = response.businesses[i].location.display_address[0];
+                address1[i] = response.businesses[i].location.display_address[1];
+                phone[i] = response.businesses[i].display_phone;
+                website[i] = response.businesses[i].url;
 
-var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.zipcodeapi.com/rest/0rOl7hMQcxZH79DDu2OthcjhqPDWttWMEtqM1X5IOfuAconQ1SbYjVrgOsR7m7hr/info.json/'+ zipcode + '/degrees';
- 
-$.ajax({
-    url: queryURL,
-    headers: {
-        'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
-    },
-    method: "GET",
-    dataType: "json"
-    }).then(function(response) {
-        console.log(response);
-        latitude = response.lat;
-        longitude = response.lng;
+                $("#list").append(
+                    '<div class="card" style="width: 18rem;">' + 
+                    '<div class="card-body">' + 
+                        '<h5 class="card-title">'+ (i+1) + '. ' + businessNames[i] + '</h5>' + 
+                        '<h6 class="card-subtitle mb-2 text-muted">' + address0[i] + '</h6>' + 
+                        '<h6 class="card-subtitle mb-2 text-muted">' + address1[i] + '</h6>' + 
+                        '<h6 class="card-text">' + phone[i] + '</h6>' +
+                        '<a href="'+ website[i] + '" class="card-link">WEBSITE</a>' + 
+                    '</div>' + 
+                    '</div>'
+                );
+                            
+            }
+            geocodeQuery(zipcode);
+            GetMap();
+            console.log(longitude);
+        });
 
-var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
+        var queryURL = 'https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=' + food + '&app_id=12c20c2e&app_key=cf05f1c35dda007747f36fa937c17727';
 
-$.ajax({
-    url: queryURL,
-    headers: {
-        'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
-    },
-    method: "GET",
-    dataType: "json"
-}).then(function(response) { 
-    console.log(response);
-    latitude = response.businesses[1].coordinates.latitude;
-    longitude = response.businesses[1].coordinates.longitude;
-    latitudes = [];
-    longitudes = [];
-    businessNames = [];
-    var address0 = [];
-    var address1 = [];
-    var phone = [];
-    var website = [];
-    for (i=0; i < response.businesses.length; i++) {
-        latitudes[i] = response.businesses[i].coordinates.latitude;
-        longitudes[i] = response.businesses[i].coordinates.longitude;
-        businessNames[i] = response.businesses[i].name;
-        address0[i] = response.businesses[i].location.display_address[0];
-        address1[i] = response.businesses[i].location.display_address[1];
-        phone[i] = response.businesses[i].display_phone;
-        website[i] = response.businesses[i].url;
+        $.ajax({
+            url: queryURL,
+            headers: {
+                'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
+            },
+            method: "GET",
+            dataType: "json"
+            }).then(function(response) {
+                console.log(response);
+                console.log(response.hits[1].recipe.label);
+                var recipenames = [];
+                var recipeimg = [];
+                var recipeurl = [];
 
-        $("#list").append(
-            '<div class="card" style="width: 18rem;">' + 
-            '<div class="card-body">' + 
-                '<h5 class="card-title">'+ (i+1) + '. ' + businessNames[i] + '</h5>' + 
-                '<h6 class="card-subtitle mb-2 text-muted">' + address0[i] + '</h6>' + 
-                '<h6 class="card-subtitle mb-2 text-muted">' + address1[i] + '</h6>' + 
-                '<h6 class="card-text">' + phone[i] + '</h6>' +
-                '<a href="'+ website[i] + '" class="card-link">WEBSITE</a>' + 
-            '</div>' + 
-            '</div>'
-        );
-                    
-    }
-    geocodeQuery(zipcode);
-    GetMap();
-    console.log(longitude);
-});
-
-
-
-var queryURL = 'https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=' + food + '&app_id=12c20c2e&app_key=cf05f1c35dda007747f36fa937c17727';
-$.ajax({
-url: queryURL,
-headers: {
-    'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
-},
-method: "GET",
-dataType: "json"
-}).then(function(response) {
-    console.log(response);
-});
-
-
-
-
-
-
-
+                for (i=0; i < 10; i++) {
+                    recipenames[i] = response.hits[i].recipe.label;
+                    recipeimg[i] = response.hits[i].recipe.image;
+                    recipeurl[i] = response.hits[i].recipe.url;
+                    $("#recipeContent").append(
+                        '<div class="card" style="width: 18rem;">' + 
+                        '<img class="card-img-top" src="' + recipeimg[i] + '" alt="Card image cap"></img>' + 
+                        '<div class="card-body">' + 
+                            '<h5 class="card-title">' + recipenames[i] + '</h5>' + 
+                            '<a href="'+ recipeurl[i] + '" class="card-link">RECIPE</a>' + 
+                        '</div>' + 
+                        '</div>'
+                    );
+                }
+            
+            });
 
     });
 
@@ -115,7 +124,7 @@ function GetMap() {
 
     console.log(randomLocations);
 
-    for (i=0; i < 5; i++) {
+    for (i=0; i < 10; i++) {
         randomLocations.push(n = {
             latitude: latitudes[i],
             longitude: longitudes[i],
