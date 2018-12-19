@@ -65,8 +65,9 @@ h2{
     border: black 1px solid;
     color: black;
     margin-left: 5px;
-    height: 40px;
+    height: 41px;
     font-size: 20px;
+    width:100px;
 }
 .modal {
     display: none; 
@@ -94,7 +95,7 @@ h2{
     float: right;
     font-size: 28px;
     font-weight: bold;
-    }  
+}  
 .close:hover,
 .close:focus {
     color: black;
