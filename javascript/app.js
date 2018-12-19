@@ -21,7 +21,7 @@ $.ajax({
         latitude = response.lat;
         longitude = response.lng;
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
+var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
 
 $.ajax({
     url: queryURL,
@@ -67,6 +67,28 @@ $.ajax({
     GetMap();
     console.log(longitude);
 });
+
+
+
+var queryURL = 'https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=' + food + '&app_id=12c20c2e&app_key=cf05f1c35dda007747f36fa937c17727';
+$.ajax({
+url: queryURL,
+headers: {
+    'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
+},
+method: "GET",
+dataType: "json"
+}).then(function(response) {
+    console.log(response);
+});
+
+
+
+
+
+
+
+
     });
 
 });
@@ -182,6 +204,8 @@ var queryURL = 'https://api.edamam.com/api/food-database/parser?ingr=' + food + 
         console.log(response);
     });
 
+
+
 // zomato menu lookup API
 
 var res_id = "16507624";
@@ -194,6 +218,19 @@ $.ajax({
     }).then(function(response) {
         console.log(response);
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
