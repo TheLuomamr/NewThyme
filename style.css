@@ -1,3 +1,7 @@
+h5, h6{
+    color:black;
+}
+
 #inputPassword{
     width:25%;
     float:left;
