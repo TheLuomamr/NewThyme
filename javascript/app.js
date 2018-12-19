@@ -37,10 +37,31 @@ $.ajax({
     latitudes = [];
     longitudes = [];
     businessNames = [];
+    var address0 = [];
+    var address1 = [];
+    var phone = [];
+    var website = [];
     for (i=0; i < response.businesses.length; i++) {
         latitudes[i] = response.businesses[i].coordinates.latitude;
         longitudes[i] = response.businesses[i].coordinates.longitude;
         businessNames[i] = response.businesses[i].name;
+        address0[i] = response.businesses[i].location.display_address[0];
+        address1[i] = response.businesses[i].location.display_address[1];
+        phone[i] = response.businesses[i].display_phone;
+        website[i] = response.businesses[i].url;
+
+        $("#list").append(
+            '<div class="card" style="width: 18rem;">' + 
+            '<div class="card-body">' + 
+                '<h5 class="card-title">'+ (i+1) + '. ' + businessNames[i] + '</h5>' + 
+                '<h6 class="card-subtitle mb-2 text-muted">' + address0[i] + '</h6>' + 
+                '<h6 class="card-subtitle mb-2 text-muted">' + address1[i] + '</h6>' + 
+                '<h6 class="card-text">' + phone[i] + '</h6>' +
+                '<a href="'+ website[i] + '" class="card-link">WEBSITE</a>' + 
+            '</div>' + 
+            '</div>'
+        );
+                    
     }
     geocodeQuery(zipcode);
     GetMap();
