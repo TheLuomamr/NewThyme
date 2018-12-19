@@ -97,3 +97,12 @@ h2{
     text-decoration: none;
     cursor: pointer;
   }
+
+input:invalid {
+    border: 2px dashed;
+    border-color: red;
+}
+
+input:valid {
+    border: 2px solid black;
+}
