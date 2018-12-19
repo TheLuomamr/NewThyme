@@ -109,22 +109,30 @@ h2{
     text-decoration: none;
     cursor: pointer;
   }
-  .card{
-      margin-bottom: 5px;
-      margin-left: 20%;
-      border: black 2px solid;
-  }
-  #zip-input{
-      width: 100%;
-      
 
-  }
-  #cook{
-      height: 55px;
-      width: 50px;
-      border-radius: 30px;
-      position: relative;
-      
-      
-  }
-  
+input:invalid {
+    border: 2px dashed;
+    border-color: red;
+}
+
+input:valid {
+    border: 2px solid black;
+}
+
+.card{
+    margin-bottom: 5px;
+    margin-left: 20%;
+    border: black 2px solid;
+}
+#zip-input{
+    width: 100%;
+    
+
+}
+#cook{
+    height: 55px;
+    width: 50px;
+    border-radius: 30px;
+    position: relative;
+}
+
