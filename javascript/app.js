@@ -5,7 +5,6 @@ var businessNames = [];
 $("#submit-button").on("click", function() {
     $("#list").empty();
     $("#list").append('<u><h2>List of Where to Eat</h2></u>');
-    $("#recipeContent").empty();
     var zipcode = $("#zip-input").val().trim();
     var food = $("#food-input").val().trim();
 
