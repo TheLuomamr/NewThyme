@@ -110,9 +110,10 @@ $("#submit-button").on("click", function () {
                     '</div>' +
                     '</div>'
                 );
+             
             }
-            //$('.card-img-top').zoom();
            
+            //$('.card-img-top').zoom();
 
             $.ajax({
                 url: queryURL,
@@ -197,11 +198,11 @@ $("#submit-button").on("click", function () {
                     '</div>'
                 );
             }
-            imageZoom(
+            /*imageZoom(
                 { blur: false, inner: true, tint: false },
                 { src: recipeimg, height: 1280, width: 1600 },
                 { src: recipeimg, height: 512, width: 640 }
-            );
+            );*/
 
 
 
@@ -364,4 +365,4 @@ $("#submit-button").on("click", function () {
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    }});
