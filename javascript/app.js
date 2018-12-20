@@ -21,16 +21,17 @@ $("#submit-button").on("click", function() {
     var zipcode = $("#zip-input").val().trim();
     var food = $("#food-input").val().trim();
 
-    var latitude, longitude;
-
-    var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.zipcodeapi.com/rest/0rOl7hMQcxZH79DDu2OthcjhqPDWttWMEtqM1X5IOfuAconQ1SbYjVrgOsR7m7hr/info.json/'+ zipcode + '/degrees';
-    
     var liveData = {
         zipcode: zipcode,
         food: food
       };
       database.ref().push(liveData);
 
+
+    var latitude, longitude;
+
+    var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.zipcodeapi.com/rest/0rOl7hMQcxZH79DDu2OthcjhqPDWttWMEtqM1X5IOfuAconQ1SbYjVrgOsR7m7hr/info.json/'+ zipcode + '/degrees';
+    
     $.ajax({
         url: queryURL,
         headers: {
@@ -54,8 +55,6 @@ $("#submit-button").on("click", function() {
             dataType: "json"
         }).then(function(response) { 
             console.log(response);
-            latitude = response.businesses[1].coordinates.latitude;
-            longitude = response.businesses[1].coordinates.longitude;
             latitudes = [];
             longitudes = [];
             businessNames = [];
@@ -88,22 +87,22 @@ $("#submit-button").on("click", function() {
             $('.card').plate();
             $('.card').plate({
      
-         // inverse animation
-         inverse: false,
-       
-         // transformation perspective in pixels
-         perspective: 500,
-       
-         // maximum rotation in degrees
-         maxRotation: 10,
-       
-         // duration in milliseconds
-         animationDuration: 200
-         
-       });
-            geocodeQuery(zipcode);
-            GetMap();
-            console.log(longitude);
+                // inverse animation
+                inverse: false,
+            
+                // transformation perspective in pixels
+                perspective: 500,
+            
+                // maximum rotation in degrees
+                maxRotation: 10,
+            
+                // duration in milliseconds
+                animationDuration: 200
+                
+                });
+
+        geocodeQuery(zipcode);
+        GetMap();
         });
 
         var queryURL = 'https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=' + food + '&app_id=12c20c2e&app_key=cf05f1c35dda007747f36fa937c17727';
@@ -117,7 +116,7 @@ $("#submit-button").on("click", function() {
             dataType: "json"
             }).then(function(response) {
                 console.log(response);
-                console.log(response.hits[1].recipe.label);
+                // console.log(response.hits[1].recipe.label);
                 var recipenames = [];
                 var recipeimg = [];
                 var recipeurl = [];
@@ -139,51 +138,6 @@ $("#submit-button").on("click", function() {
             
             });
 
-$.ajax({
-    url: queryURL,
-    headers: {
-        'Authorization': 'Bearer w3KC3brKFhrPWf7IUuN5SCc3KIMXj1CfkgHE4Wv56Mot7VJTIWOSAuBS2gfnL6fhC_Xh-TQMK1hB_w0t3hJkMTJSmrLRzLEVlnvVo18ecPgJnAk_jYg_G4f8rTwVXHYx',
-    },
-    method: "GET",
-    dataType: "json"
-}).then(function(response) { 
-    console.log(response);
-    latitude = response.businesses[1].coordinates.latitude;
-    longitude = response.businesses[1].coordinates.longitude;
-    latitudes = [];
-    longitudes = [];
-    businessNames = [];
-    var address0 = [];
-    var address1 = [];
-    var phone = [];
-    var website = [];
-    for (i=0; i < response.businesses.length; i++) {
-        latitudes[i] = response.businesses[i].coordinates.latitude;
-        longitudes[i] = response.businesses[i].coordinates.longitude;
-        businessNames[i] = response.businesses[i].name;
-        address0[i] = response.businesses[i].location.display_address[0];
-        address1[i] = response.businesses[i].location.display_address[1];
-        phone[i] = response.businesses[i].display_phone;
-        website[i] = response.businesses[i].url;
-
-        $("#list").append(
-            '<div class="card" style="width: 18rem;">' + 
-            '<div class="card-body">' + 
-                '<h5 class="card-title">'+ (i+1) + '. ' + businessNames[i] + '</h5>' + 
-                '<h6 class="card-subtitle mb-2 text-muted">' + address0[i] + '</h6>' + 
-                '<h6 class="card-subtitle mb-2 text-muted">' + address1[i] + '</h6>' + 
-                '<h6 class="card-text">' + phone[i] + '</h6>' +
-                '<a href="'+ website[i] + '" class="card-link">WEBSITE</a>' + 
-            '</div>' + 
-            '</div>'
-        );
-
-                    
-    }
-    geocodeQuery(zipcode);
-    GetMap();
-    console.log(longitude);
-});
     });
 
 });
@@ -203,7 +157,6 @@ $("#myBtn").on("click", function() {
             dataType: "json"
             }).then(function(response) {
                 console.log(response);
-                console.log(response.hits[1].recipe.label);
                 var recipenames = [];
                 var recipeimg = [];
                 var recipeurl = [];
@@ -257,12 +210,12 @@ function GetMap() {
         });
     }
 
-    console.log(randomLocations);
+    // console.log(randomLocations);
     
     for (var i = 0; i < randomLocations.length; i++) {
         var pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
-        console.log(randomLocations[i]);
-        console.log(pin);
+        // console.log(randomLocations[i]);
+        // console.log(pin);
 
         //Store some metadata with the pushpin.
         pin.metadata = {
@@ -319,59 +272,8 @@ function geocodeQuery(query) {
 
         //Make the geocode request.
         searchManager.geocode(searchRequest);
-        console.log(searchRequest);
     }
 }
-
-// edamam api for looking up food
-// food-lookup API
-
-var food = "burrito";
-var app_id = "9234fec9";
-var app_key = "1f15e7565e2265645897bc8370a1122b";
-var queryURL = 'https://api.edamam.com/api/food-database/parser?ingr=' + food + '&app_id='+ app_id + '&app_key=' + app_key + '';
-    $.ajax({
-    url: queryURL,
-    method: "GET"
-    }).then(function(response) {
-        console.log(response);
-    });
-
-
-
-// zomato menu lookup API
-
-var res_id = "16507624";
-var user_key = "5a7e60e0cd1390fa635ea4117a269d9a";
-var queryURL = "https://developers.zomato.com/api/v2.1/dailymenu?res_id=" + res_id + "";
-$.ajax({
-    url: queryURL,
-    method: "GET",
-    beforeSend: function(xhr){xhr.setRequestHeader('user-key', '5a7e60e0cd1390fa635ea4117a269d9a');},
-    }).then(function(response) {
-        console.log(response);
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  ////Modal functions////
  var modal = document.getElementById('myModal');
@@ -398,3 +300,40 @@ $.ajax({
      modal.style.display = "none";
    }
  }
+
+
+
+
+ ////////////////////////////////////////////////////////////////////////////////////////
+ /////////////////////////// UNUSED API SETUPS BELOW ////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////////////
+
+ // food-lookup API
+// not currently used
+
+// var food = "burrito";
+// var app_id = "9234fec9";
+// var app_key = "1f15e7565e2265645897bc8370a1122b";
+// var queryURL = 'https://api.edamam.com/api/food-database/parser?ingr=' + food + '&app_id='+ app_id + '&app_key=' + app_key + '';
+//     $.ajax({
+//     url: queryURL,
+//     method: "GET"
+//     }).then(function(response) {
+//         console.log(response);
+//     });
+
+
+
+// zomato menu lookup API
+// not currently used
+
+// var res_id = "16507624";
+// var user_key = "5a7e60e0cd1390fa635ea4117a269d9a";
+// var queryURL = "https://developers.zomato.com/api/v2.1/dailymenu?res_id=" + res_id + "";
+// $.ajax({
+//     url: queryURL,
+//     method: "GET",
+//     beforeSend: function(xhr){xhr.setRequestHeader('user-key', '5a7e60e0cd1390fa635ea4117a269d9a');},
+//     }).then(function(response) {
+//         console.log(response);
+//     });
