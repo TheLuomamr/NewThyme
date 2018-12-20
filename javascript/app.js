@@ -1,4 +1,7 @@
 $("#submit-button").on("click", function() {
+    $("#list").empty();
+    $("#list").append('<u><h2>List of Where to Eat</h2></u>');
+    $("#recipeContent").empty();
     var zipcode = $("#zip-input").val().trim();
     var food = $("#food-input").val().trim();
 
@@ -227,7 +230,7 @@ function geocodeQuery(query) {
             },
             errorCallback: function (e) {
                 //If there is an error, alert the user about it.
-                alert("No results found.");
+                // alert("No results found.");
             }
         };
 
