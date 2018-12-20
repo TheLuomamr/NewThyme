@@ -27,6 +27,8 @@ body{
     background-size: auto;
     color:white;
     font-family: 'Open Sans Condensed', sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .jumbotron{
     background: none;
