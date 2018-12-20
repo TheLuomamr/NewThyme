@@ -111,6 +111,7 @@ $("#submit-button").on("click", function() {
                         '</div>'
                     );
                 }
+                $('.card-img-top').zoom();
             
             });
 
@@ -197,6 +198,8 @@ $("#myBtn").on("click", function() {
                         '</div>'
                     );
                 }
+
+
             
     });
 });
