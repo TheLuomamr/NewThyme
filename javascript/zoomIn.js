@@ -1,4 +1,4 @@
-$('.card').plate();
+/*$('.card').plate();
 $('.card').plate({
 
     // inverse animation
@@ -13,4 +13,4 @@ $('.card').plate({
     // duration in milliseconds
     animationDuration: 200
     
-  });
+  });*/
