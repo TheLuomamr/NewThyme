@@ -1,3 +1,7 @@
+var latitudes = [];
+var longitudes = [];
+var businessNames = [];
+
 $("#submit-button").on("click", function() {
     $("#list").empty();
     $("#list").append('<u><h2>List of Where to Eat</h2></u>');
