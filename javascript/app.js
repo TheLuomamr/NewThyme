@@ -111,9 +111,8 @@ $("#submit-button").on("click", function() {
                         '</div>'
                     );
                 }
-                $('.card-img-top').zoom();
-            
-            });
+                //$('.card-img-top').zoom();
+             
 
 $.ajax({
     url: queryURL,
