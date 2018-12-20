@@ -112,11 +112,7 @@ $("#submit-button").on("click", function () {
                 );
             }
             //$('.card-img-top').zoom();
-            imageZoom(
-                { blur: false, inner: true, tint: false },
-                { src: 'https://picsum.photos/1600/1280?image=593', height: 1280, width: 1600 },
-                { src: 'https://picsum.photos/640/512?image=593', height: 512, width: 640 }
-            );
+           
 
             $.ajax({
                 url: queryURL,
@@ -201,6 +197,11 @@ $("#submit-button").on("click", function () {
                     '</div>'
                 );
             }
+            imageZoom(
+                { blur: false, inner: true, tint: false },
+                { src: recipeimg, height: 1280, width: 1600 },
+                { src: recipeimg, height: 512, width: 640 }
+            );
 
 
 
