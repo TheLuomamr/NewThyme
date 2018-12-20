@@ -1,3 +1,16 @@
+var config = {
+    apiKey: "AIzaSyBxc1MEvZ-AZVBs1BIuBucrYwqUHt5zT80",
+    authDomain: "groupprojectone-28f6e.firebaseapp.com",
+    databaseURL: "https://groupprojectone-28f6e.firebaseio.com",
+    projectId: "groupprojectone-28f6e",
+    storageBucket: "groupprojectone-28f6e.appspot.com",
+    messagingSenderId: "202833500145"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+
 var latitudes = [];
 var longitudes = [];
 var businessNames = [];
@@ -12,6 +25,12 @@ $("#submit-button").on("click", function() {
 
     var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.zipcodeapi.com/rest/0rOl7hMQcxZH79DDu2OthcjhqPDWttWMEtqM1X5IOfuAconQ1SbYjVrgOsR7m7hr/info.json/'+ zipcode + '/degrees';
     
+    var liveData = {
+        zipcode: zipcode,
+        food: food
+      };
+      database.ref().push(liveData);
+
     $.ajax({
         url: queryURL,
         headers: {
