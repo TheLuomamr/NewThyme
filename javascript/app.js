@@ -102,7 +102,7 @@ $("#submit-button").on("click", function () {
                 recipeimg[i] = response.hits[i].recipe.image;
                 recipeurl[i] = response.hits[i].recipe.url;
                 $("#recipeContent").append(
-                    '<div class="card" id="recCard" style="width: 20rem;">' +
+                    '<div class="card2" id="recCard" style="width: 20rem;">' +
                     '<img class="card-img-top" src="' + recipeimg[i] + '" alt="Card image cap"></img>' +
                     '<div class="card-body">' +
                     '<h5 class="card-title">' + recipenames[i] + '</h5>' +
@@ -110,11 +110,17 @@ $("#submit-button").on("click", function () {
                     '</div>' +
                     '</div>'
                 );
-             
+             ////////////////
+             /*$(document).ready(function(){
+                $(".card2").zoomer();
+            });*/
             }
            
+            
             //$('.card-img-top').zoom();
 
+            
+            
             $.ajax({
                 url: queryURL,
                 headers: {
@@ -189,7 +195,7 @@ $("#submit-button").on("click", function () {
                 recipeimg[i] = response.hits[i].recipe.image;
                 recipeurl[i] = response.hits[i].recipe.url;
                 $("#recipeContent").append(
-                    '<div class="card" style="width: 18rem;">' +
+                    '<div class="card2" style="width: 18rem;">' +
                     '<img class="card-img-top" src="' + recipeimg[i] + '" alt="Card image cap"></img>' +
                     '<div class="card-body">' +
                     '<h5 class="card-title">' + recipenames[i] + '</h5>' +
@@ -198,6 +204,9 @@ $("#submit-button").on("click", function () {
                     '</div>'
                 );
             }
+            $(document).ready(function(){
+                $(".card2").zoomer();
+            });
             /*imageZoom(
                 { blur: false, inner: true, tint: false },
                 { src: recipeimg, height: 1280, width: 1600 },
