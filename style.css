@@ -113,8 +113,8 @@ input:valid {
 }
 .card{
     margin-bottom: 5px;
-    margin-left: 20%;
-    border: black 2px solid;
+    margin-left: 15%;
+    border: black 3px solid;
     float: left;
 }
 #zip-input{
@@ -130,6 +130,5 @@ h1{
     font-size: 65px;
     letter-spacing: 2px;
 }
-#recCard{
-    margin-left: 33%;
-}
+
+
