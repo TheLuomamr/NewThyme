@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Slabo+27px&display=swap');
 h5, h6{
     color:black;
 }
@@ -5,39 +6,49 @@ h5, h6{
     width:25%;
     float:left;
 }
-#button1{
+
+button{
     border: black 1px solid;
-    background-color: black
+    background-color: black;
+    font-family: 'Abel', sans-serif;
+
 }
 #list{
-    border: solid 1px white;
+    border: solid 3px black;
     border-radius: 10px;
     color:white;
     background-color: rgba(107, 107, 107, 0.815);
+    font-family: 'Shadows Into Light', cursive;
+    overflow: scroll;
+    height: 550px;
+
 }
 #map{
-    border: solid 1px white;
+    border: solid 3px black;
     border-radius: 10px;
     color:white;
     background-color: rgba(107, 107, 107, 0.815);
     height: 550px;
+    font-family: 'Shadows Into Light', cursive;
+
 }
 body{
     background-image: url("images/foody.jpg");
     background-size: auto;
     color:white;
-    font-family: 'Open Sans Condensed', sans-serif;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 .jumbotron{
-    background: none;
+    background: rgba(255, 255, 255, 0.712);
     color: white;
-    font-family: 'Shadows Into Light', cursive;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
+    margin: 45px;
+    border: black 2px solid
 }
 .lead{
     font-size: 35px;
+    font-family: 'Abel', sans-serif;
 }
 hr{
     background-color: white;
@@ -45,6 +56,7 @@ hr{
 }
 h2{
     font-size: 40px;
+    font-family: 'Shadows Into Light', cursive;
 }
 #myMap{
     position:relative;
@@ -53,7 +65,7 @@ h2{
     border: black solid 4px;
 }
 #myBtn{
-    background-color: rgb(73, 226, 73);
+    background-color: rgba(73, 226, 73, 0.623);
     color: black;
     width: 100px;
     font-size: 20px;
@@ -61,15 +73,17 @@ h2{
     border-radius: 5px;
     border: black 1px solid;
     height: 40px;
+    font-family: 'Abel', sans-serif;
 }
 #submit-button{
     border-radius: 5px;
     border: black 1px solid;
-    color: black;
+    background-color: rgba(137, 137, 221, 0.884);
     margin-left: 5px;
     height: 41px;
     font-size: 20px;
-    width:100px;
+    width:auto;
+    font-family: 'Abel', sans-serif;
 }
 .modal {
     display: none; 
@@ -85,12 +99,14 @@ h2{
     color: black;
 }
 .modal-content {
-    background-color:rgb(233, 141, 141);
+    background-color:rgba(238, 96, 96, 0.808);
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
     border: solid white 3px;
+    font-family: 'Abel', sans-serif;
+
 }  
 .close {
     color: #aaa;
@@ -103,6 +119,11 @@ h2{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+input{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 20px;
+    
 }
 input:invalid {
     border: 2px dashed;
@@ -129,6 +150,11 @@ input:valid {
 h1{
     font-size: 65px;
     letter-spacing: 2px;
+    font-family: 'Shadows Into Light', cursive;
+
+}
+.title{
+    color: black
 }
 
 

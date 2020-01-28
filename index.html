@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="javascript/Image-Zoom-Hover-Magnifier/image-magnifier.css"> 
+    <link rel="stylesheet" href="javascript/Image-Zoom-Hover-Magnifier/image-magnifier.css">
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="javascript/3D-Hover-Effect-jQuery-Plate/docs/jquery.plate.js"></script>
-    
+
 </head>
+
 <body>
-    <div class="jumbotron jumbotron-fluid text-center">
-        <div class="container">
-           <u><h1 class="display-4">What To Eat This Thyme</h1></u>
-            <p class="lead">Have a craving for a specific type of food? Find a local place to grab a bite to eat or find a recipe to make yourself! </p>
+    <div class="jumbotron text-center">
+        <div class="container title">
+            <u>
+                <h1 class="display-4">What To Eat This Thyme</h1>
+            </u>
+            <p class="lead">Have a craving for a specific type of food? Find a local place to grab a bite to eat or find
+                a recipe to make yourself! </p>
             <hr>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <form>
-                    <div class="form-row">
-                        <div class="col-md-5">
-                            <input type="text" class="form-control border-dark" id="food-input" placeholder="What Are You Craving?">
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control border-dark p-3" id="food-input"
+                                    placeholder="What Are You Craving?">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <img src="images/cook.jpg" id="cook">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control border-dark p-3" id="zip-input"
+                                    placeholder="Zipcode Please">
+                            </div>
                         </div>
-                        <div class="col-md-2 text-center">
-                            <img src="images/cook.jpg" id="cook">
-                        </div>
-                        <div class="col-md-5">
-                            <input type="text" class="form-control border-dark" id="zip-input" placeholder="Zipcode Please">
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-4"></div>
@@ -50,26 +59,33 @@
                 <div id="myModal" class="modal">
                     <div class="modal-content">
                         <span class="close" style="text-align: left;">&times;</span>
-                        <u><h1>Recipes!</h1></u>
+                        <u>
+                            <h1>Recipes!</h1>
+                        </u>
                         <br>
                         <div class="row" id="recipeContent"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary mb-1" id="submit-button">Grab a Bite!</button>
+                <button type="button" class="btn mb-1" id="submit-button">Grab a Bite!</button>
             </div>
             <div class="col-md-4"></div>
         </div>
     </div>
+    </div>
     <br>
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
-            <div class="col-md-5 text-center" id="list">
-                <u><h2>List of Where to Eat</h2></u>
+            <div class="col-md-5 text-center pt-3" id="list">
+                <u>
+                    <h2>List of Where to Eat</h2>
+                </u>
             </div>
             <div class="col-md-2 m-0"></div>
-            <div class="col-md-5 text-center" id="map">
-                <u><h2>Map</h2></u>
-            <div id="myMap"></div>
+            <div class="col-md-5 text-center pt-3" id="map">
+                <u>
+                    <h2>Map</h2>
+                </u>
+                <div id="myMap"></div>
             </div>
         </div>
     </div>
@@ -78,4 +94,5 @@
     <!-- <script type="text/javascript" src="javascript/zoomIn.js"></script> -->
 
 </body>
+
 </html>
